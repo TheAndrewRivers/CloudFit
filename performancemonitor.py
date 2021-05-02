@@ -15,9 +15,6 @@ import psutil as monitor
 import pypyodbc as sql
 import os
 
-def test_app():
-    assert 1 == 1
-
 # Initialize connection to AWS instance
 def initAWSConnection():
 
