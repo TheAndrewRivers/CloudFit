@@ -78,7 +78,7 @@ def getTop20Processes(processes):
             name = processes[index]['name']
 
             # Append to list in string format for PySimpleGUI Listbox
-            processList.append(' '*(5-lpid) + pid + ' |' + ' '*(4-lcpu) + f'{cpu:3.1f} | {name}')
+            processList.append(' '*(5-lpid) + pid + ' |' + ' '*(4-lcpu) + f'{cpu:3.1f} | ' + name)
 
         # Move to next index of array
         index = index + 1
