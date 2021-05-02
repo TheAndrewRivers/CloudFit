@@ -221,9 +221,9 @@ def buildGui(connection):
         ramavailable = ram.available >> 30
 
         # Update CPU data in window
-        window['CPUPercent'].Update(f'{cpupercent:3.0f}%')
-        window['PhysicalCores'].Update(f'Physical Cores: {physicalcores}')
-        window['LogicalCores'].Update(f'Logical Cores: {logicalcores}')
+        window['CPUPercent'].Update(str(round(cpupercent, 0)) + '%')
+        window['PhysicalCores'].Update('Physical Cores: ' + str(physicalcores))
+        window['LogicalCores'].Update('Logical Cores: ' + str(physicalcores))
 
         # If CPU usage is less than 75%
         if cpupercent < 75:
@@ -253,10 +253,10 @@ def buildGui(connection):
             window['CPUPercent'].Update(text_color='#870000')
 
         # Update RAM data in window
-        window['RAMPercent'].Update(f'{rampercent:3.0f}%')
-        window['TotalMemory'].Update(f'Total Memory: {ramtotal}GB')
-        window['UsedMemory'].Update(f'Used Memory: {ramused}GB')
-        window['AvailableMemory'].Update(f'Available Memory: {ramavailable}GB')
+        window['RAMPercent'].Update(str(round(rampercent, 1)) + '%')
+        window['TotalMemory'].Update('Total Memory: ' + str(ramtotal))
+        window['UsedMemory'].Update('Used Memory: ' + str(ramused) + 'GB'')
+        window['AvailableMemory'].Update('Available Memory: ' + str(ramavailable) + 'GB')
 
         # If RAM usage is less than 75%
         if rampercent < 75:
