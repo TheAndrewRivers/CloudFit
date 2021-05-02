@@ -255,7 +255,7 @@ def buildGui(connection):
         # Update RAM data in window
         window['RAMPercent'].Update(str(round(rampercent, 1)) + '%')
         window['TotalMemory'].Update('Total Memory: ' + str(ramtotal))
-        window['UsedMemory'].Update('Used Memory: ' + str(ramused) + 'GB'')
+        window['UsedMemory'].Update('Used Memory: ' + str(ramused) + 'GB')
         window['AvailableMemory'].Update('Available Memory: ' + str(ramavailable) + 'GB')
 
         # If RAM usage is less than 75%
