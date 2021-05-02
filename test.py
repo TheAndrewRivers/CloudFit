@@ -1,2 +1,2 @@
-test = 'test'
-assert test == 'test'
+def test_func:
+  assert 1 == 1
