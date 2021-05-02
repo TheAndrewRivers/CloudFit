@@ -1,2 +1,2 @@
-def test_func:
+def test_func():
   assert 1 == 1
