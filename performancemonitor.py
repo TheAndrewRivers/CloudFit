@@ -11,7 +11,6 @@
 
 # Import required libraries
 
-import PySimpleGUI as gui
 import psutil as monitor
 import pypyodbc as sql
 import os
@@ -126,35 +125,19 @@ def buildGui(connection):
     cursor = connection.cursor()
 
     # Set GUI theme
-    gui.theme('LightGrey1')
 
-    # Initialize GUI layout
-    layout = [
-        [gui.Text('CPU', font='Arial 12', size=(20,1)), gui.Text('RAM', font='Arial 12', size=(20,1))],
-        [gui.Text('', font='Arial 12', size=(20,2), key='CPUPercent'), gui.Text('', font='Arial 12', size=(20,2), key='RAMPercent')],
-        [gui.Text('', font='Arial 10', size=(23,1), key='PhysicalCores'), gui.Text('', font='Arial 10', size=(20,1), key='TotalMemory')],
-        [gui.Text('', font='Arial 10', size=(23,1), key='LogicalCores'), gui.Text('', font='Arial 10', size=(20,1), key='UsedMemory')],
-        [gui.Text('', font='Arial 10', size=(23,2)), gui.Text('', font='Arial 10', size=(20,2), key='AvailableMemory')],
-        [gui.Text('PID', font='Arial 10', size=(5,1)), gui.Text('CPU %', font='Arial 10', size=(7,1)), gui.Text('Program Name', font='Arial 10', size=(12,1))],
-        [gui.Listbox(values=[], font='Courier 8', size=(50,20), key='Top20Processes')],
-        [gui.Button('Export Monitor Results to Console'), gui.Button('Close')]
-    ]
 
     # Set window title and load layout
-    window = gui.Window('Performance Monitor', layout)
 
     # Application loop
     while True:
 
         # Update window values
-        event, values = window.read(1)
 
         # Check for application close events
-        if event == gui.WIN_CLOSED or event == 'Close':
-            break
 
         # On 'Export Monitor Results to Console' button pressed
-        if event == 'Export Monitor Results to Console':
+        if 1 == 1:
 
             # Get all data from HardwareCode table
             query = '''SELECT * FROM HardwareCode'''
@@ -222,9 +205,6 @@ def buildGui(connection):
         ramavailable = ram.available >> 30
 
         # Update CPU data in window
-        window['CPUPercent'].Update(str(int(cpupercent)) + '%')
-        window['PhysicalCores'].Update('Physical Cores: ' + str(physicalcores))
-        window['LogicalCores'].Update('Logical Cores: ' + str(physicalcores))
 
         # If CPU usage is less than 75%
         if cpupercent < 75:
@@ -233,7 +213,6 @@ def buildGui(connection):
             cpuhighestrecorded = 0
 
             # Set font color to green
-            window['CPUPercent'].Update(text_color='#058700')
 
         # If CPU usage is more than 75%
         else:
@@ -251,22 +230,14 @@ def buildGui(connection):
                 connection.commit()
 
             # Set font color to red
-            window['CPUPercent'].Update(text_color='#870000')
 
         # Update RAM data in window
-        window['RAMPercent'].Update(str(int(rampercent)) + '%')
-        window['TotalMemory'].Update('Total Memory: ' + str(ramtotal))
-        window['UsedMemory'].Update('Used Memory: ' + str(ramused) + 'GB')
-        window['AvailableMemory'].Update('Available Memory: ' + str(ramavailable) + 'GB')
 
         # If RAM usage is less than 75%
         if rampercent < 75:
 
             #Resent highest recorded RAM usage
             ramhighestrecorded = 0
-
-            # Set font color to green
-            window['RAMPercent'].Update(text_color='#058700')
 
         # If RAM usage is more than 75%
         else:
@@ -282,12 +253,6 @@ def buildGui(connection):
                 values = [2,rampercent,physicalcores,logicalcores,ramtotal,ramused,ramavailable, devicename]
                 cursor.execute(query, values)
                 connection.commit()
-
-            # Set font color to red
-            window['RAMPercent'].Update(text_color='#870000')
-
-        # Update list if top 20 processes in window
-        window['Top20Processes'].Update(values=top20Processes)
 
 # Main
 if __name__ == "__main__":
