@@ -10,7 +10,7 @@
 # and any subsequent measurements that surpass the previously highest measured percent usage, reset upon usage dropping below 75%
 
 # Import required libraries
-import PySimpleGUI as gui
+#import PySimpleGUI as gui
 import psutil as monitor
 import pypyodbc as sql
 import os
