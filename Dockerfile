@@ -1,5 +1,5 @@
 FROM python:3
-COPY pperformancemonitor.py /app/performancemonitor.py
+COPY performancemonitor.py /app/performancemonitor.py
 COPY requirements.txt /app/requirements.txt
 WORKDIR /app
 
